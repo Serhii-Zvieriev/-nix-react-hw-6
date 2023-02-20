@@ -1,12 +1,27 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
-  user: {
-    id: "",
+const initialState = [
+  {
+    id: "1",
     name: "",
     surname: "",
   },
-};
+  {
+    id: "2",
+    name: "",
+    surname: "",
+  },
+  {
+    id: "3",
+    name: "",
+    surname: "",
+  },
+  {
+    id: "4",
+    name: "",
+    surname: "",
+  },
+];
 
 export const usersSlice = createSlice({
   name: "users",
@@ -27,6 +42,6 @@ export const usersSlice = createSlice({
 
 export const { increment, decrement, incrementByAmount } = usersSlice.actions;
 
-export const selectCount = (state) => state.counter.value;
+export const getUsers = (state) => state.users;
 
 export default usersSlice.reducer;

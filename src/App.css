@@ -36,5 +36,104 @@
 .container {
   display: flex;
   margin: 20px;
+  padding: 20px;
   border: 1px solid rgb(168, 19, 19);
+}
+
+/* header { */
+/* width: 100%; */
+/* } */
+
+.input {
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.imageGallery {
+  display: grid;
+  max-width: calc(100vw - 48px);
+  /* auto-fill, minmax(320px, 1fr) */
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 16px;
+  margin-top: 20px;
+  margin-bottom: 0;
+  padding: 0;
+  list-style: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cardItem {
+  /* cursor: pointer; */
+  padding-left: 10px;
+  border-radius: 2px;
+  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
+    0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+}
+
+.leftSide {
+  width: 60%;
+  padding: 20px;
+  margin-right: 20px;
+  /* border: 1px solid rgb(168, 19, 19); */
+}
+
+.reg {
+  padding: 20px;
+  margin-bottom: 20px;
+  border: 1px solid rgb(29, 167, 75);
+}
+.rightSide {
+  width: 40%;
+  padding: 20px;
+}
+
+.reg input {
+  box-sizing: border-box;
+  width: 100%;
+  display: block;
+}
+
+.reg p {
+  margin-bottom: 30px;
+  font-size: 26px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.reg button {
+  display: block;
+  cursor: pointer;
+  margin: 30px auto 0;
+  padding: 6px;
+  background-color: #fff;
+  border: 1px solid rgb(87, 16, 128);
+}
+
+.reg button:hover {
+  filter: brightness(90%);
+}
+
+.total {
+  border: 1px solid rgb(150, 13, 93);
+}
+
+.total p {
+  margin-bottom: 20px;
+  font-size: 22px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.total button {
+  cursor: pointer;
+  display: block;
+  margin: 0 auto 20px;
+  padding: 6px;
+  background-color: #fff;
+  border: 1px solid rgb(58, 20, 80);
+}
+
+.total button:hover {
+  filter: brightness(90%);
 }
