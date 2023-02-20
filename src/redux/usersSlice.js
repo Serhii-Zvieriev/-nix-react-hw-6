@@ -3,23 +3,27 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = [
   {
     id: "1",
-    name: "",
+    name: "Serg",
     surname: "",
+    time: "",
   },
   {
     id: "2",
-    name: "",
+    name: "Vas",
     surname: "",
+    time: "",
   },
   {
     id: "3",
-    name: "",
+    name: "Ivan",
     surname: "",
+    time: "",
   },
   {
     id: "4",
-    name: "",
+    name: "Petro",
     surname: "",
+    time: "",
   },
 ];
 
@@ -28,19 +32,21 @@ export const usersSlice = createSlice({
   initialState,
 
   reducers: {
-    addUser: (state, action) => {
-      state.value += 1;
+    // addName: (state, action) => {
+    //   state.name = action.payload;
+    // },
+    // addSurname: (state, action) => {
+    //   state.surname = action.payload;
+    // },
+    // addUser: (state, action) => state.push(action.payload),
+    addUser: (state, action) => [action.payload, ...state],
+    deleteUser: (state, action) => {
+      return state.filter((user) => user.id !== action.payload);
     },
-    // decrement: (state) => {
-    //   state.value -= 1;
-    // },
-    // incrementByAmount: (state, action) => {
-    //   state.value += action.payload;
-    // },
   },
 });
 
-export const { increment, decrement, incrementByAmount } = usersSlice.actions;
+export const { addUser, deleteUser } = usersSlice.actions;
 
 export const getUsers = (state) => state.users;
 

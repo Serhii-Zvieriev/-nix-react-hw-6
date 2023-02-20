@@ -11,16 +11,28 @@ import "./App.css";
 
 function App() {
   const usersData = useSelector(getUsers);
+  // console.log(usersData);
   const [filter, setFilter] = useState("");
 
   const filterHendler = ({ target }) => {
     setFilter(target.value);
   };
+
+  const filterUsersOrId = () => {
+    const normalizedFilter = filter.toLocaleLowerCase();
+
+    return usersData.filter(
+      (user) =>
+        user.name.toLocaleLowerCase().includes(normalizedFilter) ||
+        user.id.toLocaleLowerCase().includes(normalizedFilter)
+    );
+  };
+
   return (
     <div className="container">
       <div className="leftSide">
         <Searchbar filter={filter} onChange={filterHendler} />
-        <CardList usersData={usersData} />
+        <CardList usersData={filterUsersOrId()} />
       </div>
       <div className="rightSide">
         <Registration />
