@@ -146,3 +146,13 @@
   background-color: #fff;
   border: 1px solid rgb(87, 16, 128);
 }
+
+.stopwatchTime {
+  display: flex;
+  padding-top: 20px;
+}
+
+.stopwatchTime .btn:not(:last-child) {
+  margin-right: 0px;
+  /* margin-left: 0; */
+}

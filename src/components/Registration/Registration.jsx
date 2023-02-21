@@ -1,12 +1,16 @@
 import { useDispatch } from "react-redux";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 import Button from "../Button/Button";
 import { addUser } from "../../redux/usersSlice";
 
-export default function Registration() {
+export default function Registration({ setStopwatchOn }) {
   const username = useRef();
   const surname = useRef();
+
+  // const [idCurrent, setIdCurrent] = useState("");
+  // const [nameCurrent, setNameCurrent] = useState("");
+  // const [surnameCurrent, setSurnameCurrent] = useState("");
 
   const dispatch = useDispatch();
   const shortid = require("shortid");
@@ -19,8 +23,12 @@ export default function Registration() {
         surname: surname.current.value,
       })
     );
+    setStopwatchOn(true);
     username.current.value = "";
     surname.current.value = "";
+    // setIdCurrent(shortid.generate());
+    // setNameCurrent(username.current.value);
+    // setSurnameCurrent(surname.current.value);
   };
 
   return (

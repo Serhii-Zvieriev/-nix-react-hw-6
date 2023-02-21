@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getUsers, deleteUser, addUser } from "../../redux/usersSlice";
 
 import { tick } from "../../helpers/tick";
 import { tickMSMS } from "../../helpers/ticksMSMS";
@@ -6,8 +8,9 @@ import { tickMSMS } from "../../helpers/ticksMSMS";
 import Buttons from "../Buttons/Buttons";
 import LapTime from "../LapTime/LapTime";
 import ClockFace from "../ClockFace/ClockFace";
+import Button from "../Button/Button";
 
-export default function Stopwatch({ time }) {
+export default function Stopwatch({ time, setStopwatchOn }) {
   const [amountOfTime, setAmountOfTime] = useState(time);
   const [lapTime, setLapTime] = useState([]);
   const [isCounting, setIsCounting] = useState(false);
@@ -16,6 +19,10 @@ export default function Stopwatch({ time }) {
   const [isReseting, setIsReseting] = useState(true);
 
   const arrTime = amountOfTime.split(":").map((el) => +el);
+
+  const usersData = useSelector(getUsers);
+  const dispatch = useDispatch();
+  // console.log(usersData);
 
   useEffect(() => {
     let interval = null;
@@ -64,9 +71,17 @@ export default function Stopwatch({ time }) {
     setIsReseting(true);
   };
 
+  let currenUser;
+  const onClickSave = () => {
+    currenUser = usersData[usersData.length - 1];
+    dispatch(deleteUser(currenUser.id));
+    dispatch(addUser({ ...currenUser, time: amountOfTime }));
+    setStopwatchOn(false);
+  };
+
   return (
     <div className="timer">
-      <ClockFace amountOfTime={amountOfTime} />
+      <ClockFace amountOfTime={amountOfTime} user={currenUser} />
       <Buttons
         handleClickStart={handleClickStart}
         handleClickContinue={handleClickContinue}
@@ -78,6 +93,10 @@ export default function Stopwatch({ time }) {
         isReseting={isReseting}
       />
       <LapTime lapTime={lapTime} />
+      <div className="stopwatchTime">
+        <Button name="Cancel" />
+        <Button name="Save" fn={onClickSave} />
+      </div>
     </div>
   );
 }

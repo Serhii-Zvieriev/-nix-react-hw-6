@@ -12,6 +12,7 @@ import "./App.css";
 function App() {
   const usersData = useSelector(getUsers);
   // console.log(usersData);
+  const [stopwatchOn, setStopwatchOn] = useState(false);
   const [filter, setFilter] = useState("");
 
   const filterHendler = ({ target }) => {
@@ -30,16 +31,22 @@ function App() {
 
   return (
     <div className="container">
-      <div className="leftSide">
-        <Searchbar filter={filter} onChange={filterHendler} />
-        <CardList usersData={filterUsersOrId()} />
-      </div>
-      <div className="rightSide">
-        <Registration />
-        <Total />
-      </div>
+      {!stopwatchOn && (
+        <>
+          <div className="leftSide">
+            <Searchbar filter={filter} onChange={filterHendler} />
+            <CardList usersData={filterUsersOrId()} />
+          </div>
+          <div className="rightSide">
+            <Registration setStopwatchOn={setStopwatchOn} />
+            <Total />
+          </div>
+        </>
+      )}
 
-      {/* <Stopwatch time="00:00:00" /> */}
+      {stopwatchOn && (
+        <Stopwatch time="00:00:00" setStopwatchOn={setStopwatchOn} />
+      )}
     </div>
   );
 }
